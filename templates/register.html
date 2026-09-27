@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block title %}Register - BikeRental{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-7 col-lg-5">
+
+            <div class="card border-0 shadow-lg">
+
+                <div class="card-body p-5">
+
+                    <div class="text-center mb-4">
+
+                        <i class="bi bi-person-plus-fill"
+                           style="font-size: 55px;">
+                        </i>
+
+                        <h2 class="fw-bold mt-3">
+                            Create Account
+                        </h2>
+
+                        <p class="text-muted">
+                            Register to rent your favourite bike.
+                        </p>
+
+                    </div>
+
+
+                    <form method="POST"
+                          action="{{ url_for('auth.register') }}">
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Full Name
+                            </label>
+
+                            <input
+                                type="text"
+                                name="full_name"
+                                class="form-control"
+                                placeholder="Enter full name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Email
+                            </label>
+
+                            <input
+                                type="email"
+                                name="email"
+                                class="form-control"
+                                placeholder="Enter email"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="mb-3">
+
+                            <label class="form-label">
+                                Password
+                            </label>
+
+                            <input
+                                type="password"
+                                name="password"
+                                class="form-control"
+                                placeholder="Create password"
+                                minlength="6"
+                                required
+                            >
+
+                        </div>
+
+
+                        <button type="submit"
+                                class="btn btn-primary w-100">
+
+                            <i class="bi bi-person-plus"></i>
+                            Create Account
+
+                        </button>
+
+                    </form>
+
+
+                    <div class="text-center mt-4">
+
+                        Already have an account?
+
+                        <a href="{{ url_for('auth.login') }}">
+                            Login
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

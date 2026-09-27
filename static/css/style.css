@@ -1,0 +1,142 @@
+body{
+    background:#f8f9fa;
+    font-family:'Segoe UI',sans-serif;
+}
+
+/* Navbar */
+
+.navbar-brand{
+    font-weight:700;
+}
+
+/* Hero */
+
+.hero{
+    background:linear-gradient(
+        135deg,
+        #212529,
+        #343a40
+    );
+
+    color:white;
+
+    padding:80px 20px;
+
+    border-radius:0 0 25px 25px;
+}
+
+/* Bike Cards */
+
+.bike-card{
+    border:none;
+    border-radius:15px;
+    overflow:hidden;
+
+    transition:0.3s;
+}
+
+.bike-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+        0 12px 25px
+        rgba(0,0,0,0.15);
+}
+
+.bike-image{
+
+    height:220px;
+
+    object-fit:cover;
+
+    background:#e9ecef;
+}
+
+.price{
+
+    font-size:1.3rem;
+
+    font-weight:700;
+
+    color:#198754;
+}
+
+/* Dashboard */
+
+.admin-card{
+
+    border:none;
+
+    border-radius:15px;
+}
+
+.stat-icon{
+
+    font-size:2rem;
+}
+
+/* Footer */
+
+.footer{
+
+    margin-top:50px;
+
+    background:#212529;
+
+    color:white;
+
+    padding:25px;
+}
+
+/* Booking Status */
+
+.status-pending{
+    background:#ffc107;
+    color:#000;
+}
+
+.status-confirmed{
+    background:#198754;
+    color:#fff;
+}
+
+.status-cancelled{
+    background:#dc3545;
+    color:#fff;
+}
+
+.status-completed{
+    background:#0d6efd;
+    color:#fff;
+}
+
+/* Forms */
+
+.form-control:focus,
+.form-select:focus{
+
+    box-shadow:none;
+
+    border-color:#212529;
+}
+
+/* Tables */
+
+.table td,
+.table th{
+    vertical-align:middle;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    .hero{
+        text-align:center;
+    }
+
+    .bike-image{
+        height:180px;
+    }
+}

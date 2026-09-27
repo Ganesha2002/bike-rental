@@ -1,0 +1,206 @@
+{% extends "base.html" %}
+
+{% block title %}Book {{ bike.name }} - BikeRental{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8">
+
+            <div class="card border-0 shadow-lg">
+
+                <div class="card-header bg-dark text-white p-4">
+
+                    <h3 class="mb-0">
+
+                        <i class="bi bi-calendar-check"></i>
+                        Book Your Bike
+
+                    </h3>
+
+                </div>
+
+
+                <div class="card-body p-4">
+
+                    <!-- Bike Info -->
+
+                    <div class="row align-items-center mb-4">
+
+                        <div class="col-md-4">
+
+                            {% if bike.image_url %}
+
+                            <img src="{{ bike.image_url }}"
+                                 class="img-fluid rounded"
+                                 style="height:160px; width:100%; object-fit:cover;"
+                                 alt="{{ bike.name }}">
+
+                            {% else %}
+
+                            <div class="bg-light rounded d-flex justify-content-center align-items-center"
+                                 style="height:160px;">
+
+                                <i class="bi bi-bicycle text-secondary"
+                                   style="font-size:70px;">
+                                </i>
+
+                            </div>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <div class="col-md-8 mt-3 mt-md-0">
+
+                            <h4>
+                                {{ bike.name }}
+                            </h4>
+
+                            <p class="text-muted mb-1">
+                                {{ bike.cc or 'N/A' }}
+                                •
+                                {{ bike.bike_type or 'Bike' }}
+                            </p>
+
+                            <h5>
+                                ₹{{ "%.2f"|format(bike.price) }}
+                                <small class="text-muted">
+                                    / day
+                                </small>
+                            </h5>
+
+                        </div>
+
+                    </div>
+
+
+                    <hr>
+
+
+                    <!-- Booking Form -->
+
+                    <form method="POST"
+                          action="{{ url_for('booking.book_bike', bike_id=bike.id) }}">
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label fw-semibold">
+                                    Start Date
+                                </label>
+
+                                <input
+                                    type="date"
+                                    name="start_date"
+                                    id="start_date"
+                                    class="form-control form-control-lg"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label fw-semibold">
+                                    End Date
+                                </label>
+
+                                <input
+                                    type="date"
+                                    name="end_date"
+                                    id="end_date"
+                                    class="form-control form-control-lg"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="alert alert-info">
+
+                            <i class="bi bi-info-circle"></i>
+
+                            The total amount will be calculated automatically
+                            based on the number of rental days.
+
+                        </div>
+
+
+                        <div class="d-flex gap-2">
+
+                            <button type="submit"
+                                    class="btn btn-primary btn-lg">
+
+                                <i class="bi bi-check-circle"></i>
+                                Confirm Booking
+
+                            </button>
+
+
+                            <a href="{{ url_for('bikes.bike_details', bike_id=bike.id) }}"
+                               class="btn btn-outline-secondary btn-lg">
+
+                                Cancel
+
+                            </a>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+{% block extra_js %}
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const today = new Date().toISOString().split("T")[0];
+
+    const startDate = document.getElementById("start_date");
+    const endDate = document.getElementById("end_date");
+
+    if (startDate) {
+        startDate.min = today;
+    }
+
+    if (endDate) {
+        endDate.min = today;
+    }
+
+    if (startDate && endDate) {
+
+        startDate.addEventListener("change", function () {
+
+            endDate.min = startDate.value;
+
+        });
+
+    }
+
+});
+
+</script>
+
+{% endblock %}
